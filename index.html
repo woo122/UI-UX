@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Keyword Analyzer</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+      background: #f8f9fa;
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e9ecef;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    header span {
+      font-size: 13px;
+      color: #868e96;
+    }
+    .badge {
+      background: #e7f5ff;
+      color: #1971c2;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .hero {
+      background: #fff;
+      padding: 5rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid #e9ecef;
+    }
+    .hero h2 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .hero h2 span {
+      color: #339af0;
+    }
+    .hero p {
+      font-size: 17px;
+      color: #495057;
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+    .hero-tags {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .tag {
+      background: #f1f3f5;
+      color: #495057;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #1a1a1a;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e9ecef;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 1rem;
+    }
+    .card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #1a1a1a;
+    }
+    .card p {
+      font-size: 13px;
+      color: #868e96;
+    }
+    .flow {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .flow-item {
+      background: #fff;
+      border: 1px solid #e9ecef;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .flow-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #339af0;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .flow-text h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 2px;
+    }
+    .flow-text p {
+      font-size: 13px;
+      color: #868e96;
+    }
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .stack-item {
+      background: #fff;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #495057;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid #e9ecef;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 13px;
+      color: #adb5bd;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Job Keyword Analyzer</h1>
+  <span>|</span>
+  <span>구인공고 키워드 분석 서비스</span>
+  <span class="badge">학교 프로젝트</span>
+</header>
+
+<div class="hero">
+  <h2>채용공고 속 <span>핵심 키워드</span>를<br>한눈에 확인하세요</h2>
+  <p>수십 개의 구인공고를 일일이 열어보지 않아도, 기업들이 요구하는 기술과 자격증 트렌드를 빠르게 파악할 수 있습니다.</p>
+  <div class="hero-tags">
+    <span class="tag">IT / 개발자</span>
+    <span class="tag">디자인</span>
+    <span class="tag">마케팅</span>
+    <span class="tag">전기 / 전자</span>
+    <span class="tag">기계 / 제조</span>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-title">주요 기능</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon" style="background:#e7f5ff;">&#128269;</div>
+      <h3>직군별 기술 순위</h3>
+      <p>선택한 직군에서 기업들이 가장 많이 요구하는 기술 스택을 순위로 보여줍니다.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:#fff3bf;">&#127942;</div>
+      <h3>자격증 트렌드</h3>
+      <p>직군별로 우대받는 자격증이 무엇인지, 몇 개의 기업이 요구하는지 확인할 수 있습니다.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:#d3f9d8;">&#128200;</div>
+      <h3>데이터 시각화</h3>
+      <p>기술과 자격증을 차트로 시각화하여 직관적으로 트렌드를 파악할 수 있습니다.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section">
+  <p class="section-title">서비스 구조</p>
+  <div class="flow">
+    <div class="flow-item">
+      <div class="flow-num">1</div>
+      <div class="flow-text">
+        <h4>채용공고 수집</h4>
+        <p>API를 통해 선택한 직군의 채용공고 데이터를 수집합니다.</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">2</div>
+      <div class="flow-text">
+        <h4>AI 키워드 추출</h4>
+        <p>OpenAI API를 활용하여 공고 텍스트에서 기술과 자격증을 자동으로 분류합니다.</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">3</div>
+      <div class="flow-text">
+        <h4>데이터 저장 및 집계</h4>
+        <p>추출된 키워드를 MySQL에 저장하고 빈도수를 집계합니다.</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">4</div>
+      <div class="flow-text">
+        <h4>시각화</h4>
+        <p>기술 순위와 자격증 순위를 차트로 시각화하여 사용자에게 제공합니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section">
+  <p class="section-title">기술 스택</p>
+  <div class="stack">
+    <span class="stack-item">Python</span>
+    <span class="stack-item">OpenAI API</span>
+    <span class="stack-item">MySQL</span>
+    <span class="stack-item">JavaScript</span>
+    <span class="stack-item">Chart.js</span>
+    <span class="stack-item">Selenium</span>
+    <span class="stack-item">Flask</span>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section">
+  <p class="section-title">프로젝트 정보</p>
+  <div class="cards">
+    <div class="card">
+      <h3>소속</h3>
+      <p style="margin-top:6px;">한국폴리텍대학 인천캠퍼스</p>
+    </div>
+    <div class="card">
+      <h3>목적</h3>
+      <p style="margin-top:6px;">UI/UX 수업 과제 및 학습 목적의 비상업적 프로젝트</p>
+    </div>
+    <div class="card">
+      <h3>데이터 활용</h3>
+      <p style="margin-top:6px;">수집된 데이터는 외부 제공 및 상업적 이용 없이 학습 목적으로만 사용됩니다.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  한국폴리텍대학 인천캠퍼스 &middot; Job Keyword Analyzer &middot; 학습 목적 프로젝트
+</footer>
+
+</body>
+</html>
